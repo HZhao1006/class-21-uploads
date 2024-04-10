@@ -90,7 +90,7 @@ if (isset($_POST["upload"])) {
       // move the uploaded file to it's final resting place: public/uploads directory
 
       // 8. get the newly inserted record's id
-      $record_id = $db -> $lastInertId("id");
+      $record_id = $db->lastInsertId("id");
 
       // uploaded file should be in folder with same name as table with the primary key as the filename.
       // Note: THIS IS NOT A URL; this is a FILE PATH on the server!
@@ -102,7 +102,7 @@ if (isset($_POST["upload"])) {
       // Move the file to the public/uploads/clipart folder
       // Note: THIS FUNCTION REQUIRES A PATH. NOT A URL!
       // 10. move the uploaded file to the storage path
-      if (move_uploaded_file($upload["tem_name"], $upload_storage_path) == false) {
+      if (move_uploaded_file($upload["tmp_name"], $upload_storage_path) == false) {
         error_log("Failed to permanently store the uploaded file on the file server. Please check that the server folder exists.");
       }
     }
